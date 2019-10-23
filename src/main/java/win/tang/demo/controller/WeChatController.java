@@ -2,6 +2,8 @@ package win.tang.demo.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,10 @@ import java.util.List;
  */
 @RestController
 public class WeChatController {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private Logger dataLogger = LoggerFactory.getLogger("dataLogger");
     @Autowired
     WeChatConfig weChatConfig;
     @Autowired
@@ -71,7 +77,7 @@ public class WeChatController {
     @GetMapping("findAll")
     public Object findAll(@RequestParam(value = "page",defaultValue = "1")int page,
                           @RequestParam(value = "size",defaultValue = "2")int size){
-
+        dataLogger.info("findAll==page="+page);
         PageHelper.startPage(page,size);
         List<Video> all = videoService.findAll();
         PageInfo<Video> videoPageInfo = new PageInfo<>(all);
