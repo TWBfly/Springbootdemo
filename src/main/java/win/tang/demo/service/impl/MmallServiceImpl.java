@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import win.tang.demo.domain.MmallUser;
 import win.tang.demo.mapper.MmallMapper;
-import win.tang.demo.mapper.VideoMapper;
 import win.tang.demo.service.MmallService;
 
 /**
@@ -22,12 +21,22 @@ public class MmallServiceImpl implements MmallService {
     }
 
     @Override
-    public MmallUser login(String username, String password) {
-        return mmallMapper.login();
+    public int checkEmail(String email) {
+        return mmallMapper.checkEmail(email);
     }
 
     @Override
-    public String register(MmallUser mmallUser) {
+    public int checkPhone(String phone) {
+        return mmallMapper.checkPhone(phone);
+    }
+
+    @Override
+    public MmallUser login(String username, String password) {
+        return mmallMapper.login(username,password);
+    }
+
+    @Override
+    public int register(MmallUser mmallUser) {
         return mmallMapper.register(mmallUser);
     }
 

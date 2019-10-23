@@ -1,7 +1,9 @@
 package win.tang.demo.domain;
 
 
-public class MmallPayInfo {
+import java.io.Serializable;
+
+public class MmallPayInfo implements Serializable {
 
   private Integer id;
   private Integer userId;

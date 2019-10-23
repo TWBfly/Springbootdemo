@@ -13,14 +13,25 @@ public interface MmallService {
     int checkUserName(String userName);
 
     /**
+     * check email
+     */
+    int checkEmail(String email);
+
+    /**
+     * check phone
+     */
+    int checkPhone(String phone);
+
+
+    /**
      * login
      */
-    MmallUser login(String username,String password);
+    MmallUser login(String username, String password);
 
     /**
      * register
      */
-    String register(MmallUser mmallUser);
+    int register(MmallUser mmallUser);
 
 
 }

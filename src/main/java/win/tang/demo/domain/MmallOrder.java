@@ -1,7 +1,9 @@
 package win.tang.demo.domain;
 
 
-public class MmallOrder {
+import java.io.Serializable;
+
+public class MmallOrder implements Serializable {
 
   private Integer id;
   private Integer orderNo;

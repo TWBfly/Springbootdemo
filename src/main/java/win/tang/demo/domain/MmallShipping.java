@@ -1,7 +1,9 @@
 package win.tang.demo.domain;
 
 
-public class MmallShipping {
+import java.io.Serializable;
+
+public class MmallShipping implements Serializable {
 
   private Integer id;
   private Integer userId;
