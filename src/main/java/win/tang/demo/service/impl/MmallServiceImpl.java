@@ -2,9 +2,12 @@ package win.tang.demo.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import win.tang.demo.domain.MmallCategory;
 import win.tang.demo.domain.MmallUser;
 import win.tang.demo.mapper.MmallMapper;
 import win.tang.demo.service.MmallService;
+
+import java.util.List;
 
 /**
  * Create by Tang on 2019/10/23
@@ -73,6 +76,31 @@ public class MmallServiceImpl implements MmallService {
     @Override
     public int updateUserInfo(MmallUser user) {
         return mmallMapper.updateUserInfo(user);
+    }
+
+    @Override
+    public int selectRole(int id) {
+        return mmallMapper.selectRole(id);
+    }
+
+    @Override
+    public int addCategory(MmallCategory category) {
+        return mmallMapper.addCategory(category);
+    }
+
+    @Override
+    public int updateCategory(MmallCategory category) {
+        return mmallMapper.updateCategory(category);
+    }
+
+    @Override
+    public List<MmallCategory> getChildrenParallelCategory(Integer parentId) {
+        return mmallMapper.getChildrenParallelCategory(parentId);
+    }
+
+    @Override
+    public MmallCategory selectByPrimaryKey(int id) {
+        return mmallMapper.selectByPrimaryKey(id);
     }
 
 

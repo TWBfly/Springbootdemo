@@ -1,14 +1,21 @@
 package win.tang.demo.service;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import win.tang.demo.domain.MmallCategory;
 import win.tang.demo.domain.MmallUser;
 import win.tang.demo.utils.FormatResponseUtil;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Create by Tang on 2019/10/23
  */
 public interface MmallService {
+
+    /**********************  user  **************************************/
 
     /**
      * check用户名
@@ -71,5 +78,31 @@ public interface MmallService {
      */
     int updateUserInfo(MmallUser user);
 
+
+    /**********************  category  **************************************/
+    /**
+     * select role
+     */
+    int selectRole(int id);
+
+    /**
+     * insert
+     */
+    int addCategory(MmallCategory category);
+
+    /**
+     * update
+     */
+    int updateCategory(MmallCategory category);
+
+    /**
+     * 查询子节点的category信息,并且不递归,保持平级
+     */
+    List<MmallCategory> getChildrenParallelCategory(Integer parentId);
+
+    /**
+     * id查询
+     */
+    MmallCategory selectByPrimaryKey(int id);
 
 }

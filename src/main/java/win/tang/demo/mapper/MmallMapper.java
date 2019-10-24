@@ -1,14 +1,18 @@
 package win.tang.demo.mapper;
 
 import org.apache.ibatis.annotations.*;
+import win.tang.demo.domain.MmallCategory;
 import win.tang.demo.domain.MmallUser;
 import win.tang.demo.provider.MmallProvider;
+
+import java.util.List;
 
 /**
  * Create by Tang on 2019/10/23
  * 电商
  */
 public interface MmallMapper {
+    /**********************  user  **************************************/
     /**
      * check username
      */
@@ -21,6 +25,9 @@ public interface MmallMapper {
     @Insert("insert into `mmall_user`(`username`,`password`,`email`,`phone`,`question`,`answer`,`role`,`create_time`,`update_time`)"
             + "values" + "(#{username},#{password},#{email},#{phone},#{question},#{answer},#{role},now(),now());")
     int register(MmallUser mmallUser);
+
+    @Select("select role from mmall_user where id =#{id}")
+    int selectRole(int id);
 
     /**
      * check email
@@ -78,4 +85,19 @@ public interface MmallMapper {
      */
     @UpdateProvider(type = MmallProvider.class, method = "updateProvider")
     int updateUserInfo(MmallUser user);
+
+
+    /**********************  category  **************************************/
+    @Insert("insert into `mmall_category`(`parent_id`,`name`,`status`,`sort_order`,`create_time`,`update_time`)"
+            + "values" + "(#{parentId},#{name},#{status},#{sortOrder},now(),now());")
+    int addCategory(MmallCategory category);
+
+    @UpdateProvider(type = MmallProvider.class, method = "updateCategoryProvider")
+    int updateCategory(MmallCategory category);
+
+    @Select("select * from mmall_category where parent_id=#{parentId}")
+    List<MmallCategory> getChildrenParallelCategory(Integer parentId);
+
+    @Select("select * from mmall_category where id=#{id}")
+    MmallCategory selectByPrimaryKey(int id);
 }

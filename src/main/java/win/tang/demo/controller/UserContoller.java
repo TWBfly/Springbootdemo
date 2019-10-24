@@ -23,7 +23,6 @@ public class UserContoller {
     MmallService mmallService;
 
     @PostMapping("login")
-    @ResponseBody
     public Object login(String username, String password, HttpSession session) {
         int resultCount = mmallService.checkUserName(username);
         if (resultCount <= 0) {
@@ -39,14 +38,12 @@ public class UserContoller {
     }
 
     @GetMapping("logout")
-    @ResponseBody
     public Object logout(HttpSession session) {
         session.removeAttribute(Const.CURRENT_USER);
         return FormatResponseUtil.formatResponse("退出成功");
     }
 
     @PostMapping("register")
-    @ResponseBody
     public Object register(@RequestBody MmallUser user) {
         int resultCount = mmallService.checkUserName(user.getUsername());
         if (resultCount > 0) {
@@ -69,7 +66,6 @@ public class UserContoller {
     }
 
     @PostMapping("get_user_info")
-    @ResponseBody
     public Object getUserInfo(HttpSession session) {
         MmallUser login = (MmallUser) session.getAttribute(Const.CURRENT_USER);
         if (login == null) {
@@ -82,7 +78,6 @@ public class UserContoller {
      * 忘记问题
      */
     @PostMapping("forget_get_question")
-    @ResponseBody
     public Object forgetGetQuestion(String username) {
         int resultCount = mmallService.checkUserName(username);
         if (resultCount <= 0) {
@@ -99,7 +94,6 @@ public class UserContoller {
      * 校验答案
      */
     @PostMapping("forget_check_answer")
-    @ResponseBody
     public Object checkAnswer(String username, String question, String answer) {
         int resultCount = mmallService.checkUserName(username);
         if (resultCount <= 0) {
@@ -120,7 +114,6 @@ public class UserContoller {
      * 忘记密码 重置密码 未登录
      */
     @PostMapping("reset_password")
-    @ResponseBody
     public Object resetPassword(String username, String new_password, String token) {
         if (StringUtils.isBlank(token)) {
             return FormatResponseUtil.error("传参错误,token不能为空");
@@ -152,7 +145,6 @@ public class UserContoller {
      * 忘记密码 重置密码 已登录
      */
     @PostMapping("login_reset_password")
-    @ResponseBody
     public Object loginResetPassword(HttpSession session, String old_password, String new_password) {
         MmallUser user = (MmallUser) session.getAttribute(Const.CURRENT_USER);
         if (user == null) {
@@ -174,7 +166,6 @@ public class UserContoller {
      * 更新用户信息
      */
     @PostMapping("update_user_info")
-    @ResponseBody
     public Object update_user_info(HttpSession session, @RequestBody MmallUser user) {
         MmallUser session_user = (MmallUser) session.getAttribute(Const.CURRENT_USER);
         if (session_user == null) {

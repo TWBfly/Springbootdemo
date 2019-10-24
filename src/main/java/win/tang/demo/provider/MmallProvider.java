@@ -2,6 +2,7 @@ package win.tang.demo.provider;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.jdbc.SQL;
+import win.tang.demo.domain.MmallCategory;
 import win.tang.demo.domain.MmallUser;
 
 /**
@@ -41,4 +42,33 @@ public class MmallProvider {
             }
         }.toString();
     }
+
+    public String updateCategoryProvider(MmallCategory category) {
+
+        return new SQL() {
+            {
+                UPDATE("mmall_category");
+                //条件写法
+                if (category.getParentId() != null) {
+                    SET("parent_id=#{parent_id}");
+                }
+                if (category.getName()!=null) {
+                    SET("name=#{name}");
+                }
+                if (category.getStatus() != null) {
+                    SET("status=#{status}");
+                }
+                if (category.getSortOrder() != null) {
+                    SET("sort_order=#{sort_order}");
+                }
+                SET("update_time= now()");
+                WHERE("id=#{id}");
+            }
+        }.toString();
+    }
+
+
+
+
+
 }
