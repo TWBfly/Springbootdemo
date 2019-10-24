@@ -26,6 +26,11 @@ public class MmallServiceImpl implements MmallService {
     }
 
     @Override
+    public int checkOnlyEmail(String email, int id) {
+        return mmallMapper.checkOnlyEmail(email,id);
+    }
+
+    @Override
     public int checkPhone(String phone) {
         return mmallMapper.checkPhone(phone);
     }
@@ -39,5 +44,36 @@ public class MmallServiceImpl implements MmallService {
     public int register(MmallUser mmallUser) {
         return mmallMapper.register(mmallUser);
     }
+
+    @Override
+    public String forgetGetQuestion(String username) {
+        return mmallMapper.forgetGetQuestion(username);
+    }
+
+    @Override
+    public int checkAnswer(String username, String question, String answer) {
+        return mmallMapper.checkAnswer(username,question,answer);
+    }
+
+    @Override
+    public int resetPassword(String username, String newPassword, String token) {
+        return mmallMapper.resetPassword(username,newPassword,token);
+    }
+
+    @Override
+    public int checkPassword(String password, int id) {
+        return mmallMapper.checkPassword(password,id);
+    }
+
+    @Override
+    public int loginResetPassword(String oldPassword, String newPassword) {
+        return mmallMapper.loginResetPassword(oldPassword,newPassword);
+    }
+
+    @Override
+    public int updateUserInfo(MmallUser user) {
+        return mmallMapper.updateUserInfo(user);
+    }
+
 
 }

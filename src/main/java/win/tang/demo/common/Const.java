@@ -5,4 +5,12 @@ package win.tang.demo.common;
  */
 public interface Const {
     String CURRENT_USER = "current_user";
+
+    String EMAIL = "email";
+    String USERNAME = "username";
+
+    interface Role {
+        int ROLE_CUSTOMER = 0;
+        int ROLE_ADMIN = 1;
+    }
 }
